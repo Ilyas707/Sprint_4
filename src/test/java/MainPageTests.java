@@ -11,7 +11,6 @@ import static org.junit.Assert.fail;
 import static org.hamcrest.Matchers.equalTo;
 
 
-
     @RunWith(Parameterized.class)
     public class MainPageTests {
         private WebDriver driver;
