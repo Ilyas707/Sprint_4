@@ -11,6 +11,7 @@ import static org.junit.Assert.fail;
 import static org.hamcrest.Matchers.equalTo;
 
 
+
     @RunWith(Parameterized.class)
     public class MainPageTests {
         private WebDriver driver;
@@ -65,18 +66,9 @@ import static org.hamcrest.Matchers.equalTo;
             mainPage.clickAccordionHeader(this.numberOfElement);
             mainPage.waitForLoadItem(this.numberOfElement);
 
-            if (mainPage.isAccordionItemDisplayed(this.numberOfElement)) {
-                MatcherAssert.assertThat("Не совпадает текст вопроса №" + this.numberOfElement,
-                        this.expectedHeaderText,
-                        equalTo(mainPage.getAccordionHeaderText(this.numberOfElement))
-                );
-                MatcherAssert.assertThat("Не совпадает текст ответа №" + this.numberOfElement,
-                        this.expectedItemText,
-                        equalTo(mainPage.getAccordionItemText(this.numberOfElement))
-                );
-            }
-            else {
-                fail("Вопрос в FAQ №" + this.numberOfElement + "не раскрылся");
-            }
+            assert mainPage.isAccordionItemDisplayed(this.numberOfElement) : "Вопрос в FAQ №" + this.numberOfElement + " не раскрылся";
+            MatcherAssert.assertThat("Не совпадает текст вопроса №" + this.numberOfElement, this.expectedHeaderText, equalTo(mainPage.getAccordionHeaderText(this.numberOfElement)));
+            MatcherAssert.assertThat("Не совпадает текст ответа №" + this.numberOfElement, this.expectedItemText, equalTo(mainPage.getAccordionItemText(this.numberOfElement)));
+
         }
     }
